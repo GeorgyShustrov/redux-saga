@@ -1,15 +1,24 @@
 import { combineReducers } from "redux";
 import { createAction } from "redux-action";
 import * as constants from "./constants";
-import { search } from "../api";
 
-export const search_tv_show = createAction("SEARCH_TV_SHOW");
-
-const foundShows = (state = "", actions) => {
-  return search(actions.payload);
+export const actions = {
+  searchShow: createAction(constants.SEARCH_SHOW),
+  searchShowSuccess: createAction(constants.SEARCH_SHOW_SUCCESS),
+  searchShowFailure: createAction(constants.SEARCH_SHOW_FAILURE)
 };
-const storageReducers = combineReducers({
-  foundShows
+
+const showList = (state = [], action) => {
+  switch (action.type) {
+    case constants.SEARCH_SHOW_SUCCESS:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const showReducer = combineReducers({
+  showList
 });
 
-export default storageReducers;
+export default showReducer;

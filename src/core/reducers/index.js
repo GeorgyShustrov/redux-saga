@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import storageReducers from "../../App/store/duck";
+import showReducer from "../../App/store/duck";
 
 const rootReducer = combineReducers({
-  storageReducers
+  showReducer
 });
 
 export default rootReducer;
