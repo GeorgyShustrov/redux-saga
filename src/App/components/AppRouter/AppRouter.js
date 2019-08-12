@@ -1,17 +1,14 @@
 import React from "react";
 import { Route, withRouter, Switch, Redirect } from "react-router-dom";
-import Search from "../../containers/tvCatalog/search";
-import Show from "../../containers/tvCatalog/show";
+import tvCatalog from "../../containers/tvCatalog/";
 
 class AppRouter extends React.Component {
   render() {
     return (
       <div>
-        <Route path="/tv-catalog" component={Search} />
         <Switch>
-          <Route path="/tv-catalog" component={Show} />
-
-          <Redirect path="/*" to="/tv-catalog" />
+          <Route path="/search" exact={true} component={tvCatalog} />
+          <Redirect path="/search*" to="/search" />
         </Switch>
       </div>
     );

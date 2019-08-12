@@ -1,1 +1,1 @@
-export const storageSelector = state => state.storageReducers;
+export const showSelector = state => state.showReducers;

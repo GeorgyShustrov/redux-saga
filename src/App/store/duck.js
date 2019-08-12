@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { createAction } from "redux-action";
+import { createAction } from "redux-actions";
 import * as constants from "./constants";
 
 export const actions = {

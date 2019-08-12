@@ -1,24 +1,18 @@
 import React from "react";
-import "./App.css";
-import { connect } from "react-redux";
-import { actions } from "./store/duck";
-import Search from "./containers/tvCatalog/search";
-import { Switch, Route, Redirect } from "react-router-dom";
 
-const mapDispatchToProps = dispatch => {
-  return {
-    searchShow: str => dispatch(actions.searchShow(str))
-  };
-};
+import "./App.css";
+
+import Search from "./containers/tvCatalog/search";
+import { Route, Redirect } from "react-router-dom";
 
 class App extends React.Component {
   render() {
-    const { searchShow } = this.props;
-    return <button onClick={() => searchShow("hello")}>Найти шоу</button>;
+    return (
+      <Route>
+        <Search path="/tv.catalog" />
+      </Route>
+    );
   }
 }
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(App);
+export default App;
