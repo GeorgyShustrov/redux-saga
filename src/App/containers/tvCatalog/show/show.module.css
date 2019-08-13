@@ -1,0 +1,41 @@
+.showContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  padding: 10px 50px 10px 50px;
+  background-color: #333;
+  color: #ace66e;
+}
+.showDescription {
+  align-content: center;
+  padding: 10px 75px 10px 50px;
+}
+.showTitle {
+  font-family: Helvetica;
+  -webkit-font-smoothing: antialiased;
+  margin: 15px auto 30px auto;
+
+  text-align: center;
+}
+
+.showActorsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.titleImg {
+  width: 350px;
+  margin: auto;
+  display: block;
+}
+.listItem {
+  width: 350px;
+  margin: auto 15px;
+  text-align: center;
+  list-style-type: none;
+}
+.actorImg {
+  width: 250px;
+}

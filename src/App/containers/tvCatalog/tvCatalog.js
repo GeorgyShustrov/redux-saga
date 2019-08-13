@@ -1,7 +1,6 @@
 import React from "react";
-import { Route, withRouter, Switch, Redirect } from "react-router-dom";
+import { Route, withRouter, Switch } from "react-router-dom";
 import styles from "./dashboard.module.css";
-import All from "./components/News/All/All";
 import Show from "./show/Show";
 import Search from "./search/Search";
 
@@ -11,7 +10,6 @@ class tvCatalog extends React.Component {
       <div className={styles.dashboard}>
         <Switch>
           <Route path="/serch" component={Search} />
-          <Route path="/show:id" component={Show} />
         </Switch>
       </div>
     );

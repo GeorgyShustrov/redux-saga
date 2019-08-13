@@ -1,0 +1,64 @@
+.searchForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  padding: 10px 50px 10px 50px;
+  background-color: #333;
+  color: #ace66e;
+}
+.searchMenu {
+  align-content: center;
+  justify-content: center;
+  display: flex;
+}
+.searcInputs {
+  width: 250px;
+
+  margin: auto 0 auto auto;
+  align-content: center;
+}
+
+.searchEmpty {
+  text-align: center;
+}
+.searchButton {
+  width: 100px;
+
+  margin: auto auto auto 10px;
+  align-content: center;
+}
+
+.searchList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  padding: 10px 75px 35px 75px;
+}
+.listItem {
+  width: 450px;
+  margin: 15px auto 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+.searchName {
+  text-align: center;
+  color: red;
+}
+.link {
+  width: 400px;
+  display: block;
+}
+.title {
+  width: 400px;
+}
+.searchDescription {
+  align-content: center;
+  width: 450px;
+}

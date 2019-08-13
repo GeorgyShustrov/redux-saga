@@ -5,10 +5,11 @@ import { actions } from "../../../store/duck";
 import { showSelector } from "../../../store/selectors";
 import { NavLink, Route } from "react-router-dom";
 import Show from "../show/Show";
-import { from } from "rxjs";
+
 const mapDispatchToProps = dispatch => {
   return {
-    searchShow: str => dispatch(actions.searchShow(str))
+    searchShow: str => dispatch(actions.searchShow(str)),
+    getActors: id => dispatch(actions.getActors(id))
   };
 };
 const mapStateToProps = state => {
@@ -20,7 +21,8 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: ""
+      id: "",
+      value: ""
     };
     this.textInput = React.createRef();
   }
@@ -35,26 +37,29 @@ class Search extends React.Component {
   };
   handleSubmit = e => {
     e.preventDefault();
+
     const { searchShow } = this.props;
     if (this.state.value) {
       searchShow(this.state.value);
     }
   };
-
+  saveInfo = el => {
+    this.props.getActors(el);
+  };
   render() {
     const { showList } = this.props;
     return (
-      <form className="search__form" onSubmit={this.handelSubmit}>
-        <div className={styles.search__container}>
+      <form className={styles.searchForm} onSubmit={this.handelSubmit}>
+        <div className={styles.searchMenu}>
           <input
-            className={styles.search__inputs}
+            className={styles.searcInputs}
             type="text"
             values={this.values}
             ref={this.textInput}
             onChange={this.changeInput}
           />
           <button
-            className={styles.search__button}
+            className={styles.searchButton}
             type="submit"
             onClick={this.handleSubmit}
           >
@@ -62,26 +67,34 @@ class Search extends React.Component {
           </button>
         </div>
         {showList.length > 0 ? (
-          <ul>
+          <ul className={styles.searchList}>
             {showList.map(el => (
-              <li key={el.id}>
+              <li key={el.id} className={styles.listItem}>
                 <NavLink
-                  className="t-link"
-                  to={`\/shows\/${+el.id}`}
-                  onClick={() => this.setState({ value: el.id })}
+                  className={styles.link}
+                  to={`/show/${el.id}`}
+                  onClick={() => this.saveInfo(el.id)}
                 >
-                  {el.name}
-                  <img src={el.image.original} />
+                  <p className={styles.searchName}> {el.name}</p>
+                  {el.image && el.image.original && (
+                    <img
+                      className={styles.title}
+                      src={el.image.original}
+                      alt={el.id}
+                    />
+                  )}
                 </NavLink>
-
-                <div dangerouslySetInnerHTML={{ __html: el.summary }} />
+                <Route path={`/show/:${el.id}`} component={Show} />
+                <div
+                  className={styles.searchDescription}
+                  dangerouslySetInnerHTML={{ __html: el.summary }}
+                />
               </li>
             ))}
           </ul>
         ) : (
-          <p>Список пуст</p>
+          <h4 className={styles.searchEmpty}>Список пуст</h4>
         )}
-        <Show showId={this.state.id} />
       </form>
     );
   }
