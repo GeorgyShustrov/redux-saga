@@ -6,8 +6,10 @@
   justify-content: center;
   padding: 10px 50px 10px 50px;
   background-color: #333;
+
   color: #ace66e;
 }
+
 .searchMenu {
   align-content: center;
   justify-content: center;
@@ -31,15 +33,20 @@
 }
 
 .searchList {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   text-align: center;
   justify-content: center;
   padding: 10px 75px 35px 75px;
 }
 .listItem {
   width: 450px;
+  border: 5px inset white;
+  border-radius: 20px;
+  box-shadow: 0 20px 31px 0 rgba(0, 43, 86, 0.15),
+    0 0 20px 0 rgba(0, 43, 86, 0.04);
+  background-color: rgb(36, 36, 36);
+  padding: 5px 15px 15px;
   margin: 15px auto 30px;
   display: flex;
   flex-direction: row;
@@ -47,9 +54,14 @@
   align-content: center;
   justify-content: center;
 }
+.listItem:hover {
+  border: 5px inset rgb(0, 0, 0);
+  background-color: rgb(46, 46, 46);
+}
 .searchName {
   text-align: center;
   color: red;
+  font-size: 25px;
 }
 .link {
   width: 400px;
@@ -61,4 +73,127 @@
 .searchDescription {
   align-content: center;
   width: 450px;
+}
+
+.cssloadBell {
+  width: 97px;
+  height: 99px;
+  border-radius: 100%;
+  position: absolute;
+  left: calc(50% - 49px);
+  top: calc(50% - 49px);
+}
+
+.cssloadCircle {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.cssloadCircle .cssloadInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 5px solid rgba(0, 255, 170, 0.7);
+  border-right: none;
+  border-top: none;
+  background-clip: padding;
+  box-shadow: inset 0px 0px 10px rgba(0, 255, 170, 0.15);
+}
+
+.cssloadCircle:nth-of-type(0) {
+  transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+}
+.cssloadCircle:nth-of-type(0) .cssloadInner {
+  animation: cssload-spin 2.3s infinite linear;
+  -o-animation: cssload-spin 2.3s infinite linear;
+  -ms-animation: cssload-spin 2.3s infinite linear;
+  -webkit-animation: cssload-spin 2.3s infinite linear;
+  -moz-animation: cssload-spin 2.3s infinite linear;
+}
+
+.cssloadCircle:nth-of-type(1) {
+  transform: rotate(70deg);
+  -o-transform: rotate(70deg);
+  -ms-transform: rotate(70deg);
+  -webkit-transform: rotate(70deg);
+  -moz-transform: rotate(70deg);
+}
+.cssloadCircle:nth-of-type(1) .cssloadInner {
+  animation: cssload-spin 2.3s infinite linear;
+  -o-animation: cssload-spin 2.3s infinite linear;
+  -ms-animation: cssload-spin 2.3s infinite linear;
+  -webkit-animation: cssload-spin 2.3s infinite linear;
+  -moz-animation: cssload-spin 2.3s infinite linear;
+}
+
+.cssloadCircle:nth-of-type(2) {
+  transform: rotate(140deg);
+  -o-transform: rotate(140deg);
+  -ms-transform: rotate(140deg);
+  -webkit-transform: rotate(140deg);
+  -moz-transform: rotate(140deg);
+}
+.cssloadCircle:nth-of-type(2) .cssloadInner {
+  animation: cssload-spin 2.3s infinite linear;
+  -o-animation: cssload-spin 2.3s infinite linear;
+  -ms-animation: cssload-spin 2.3s infinite linear;
+  -webkit-animation: cssload-spin 2.3s infinite linear;
+  -moz-animation: cssload-spin 2.3s infinite linear;
+}
+
+.cssloadBell {
+  animation: cssload-spin 5.75s infinite linear;
+  -o-animation: cssload-spin 5.75s infinite linear;
+  -ms-animation: cssload-spin 5.75s infinite linear;
+  -webkit-animation: cssload-spin 5.75s infinite linear;
+  -moz-animation: cssload-spin 5.75s infinite linear;
+}
+
+@keyframes cssload-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes cssload-spin {
+  from {
+    -o-transform: rotate(0deg);
+  }
+  to {
+    -o-transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes cssload-spin {
+  from {
+    -ms-transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes cssload-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes cssload-spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
 }

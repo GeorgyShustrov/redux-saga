@@ -11,10 +11,12 @@ export const actions = {
   getActorsFailure: createAction(constants.GET_ACTORS_FAILURE)
 };
 
-const showList = (state = [], action) => {
+const showList = (state = { list: [], loading: false }, action) => {
   switch (action.type) {
+    case constants.SEARCH_SHOW:
+      return { ...state, loading: true };
     case constants.SEARCH_SHOW_SUCCESS:
-      return action.payload;
+      return { list: action.payload, loading: false };
 
     default:
       return state;

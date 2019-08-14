@@ -14,7 +14,7 @@ function* searchShowWorker(action) {
 }
 function* actorWorker(action) {
   const { payload } = action;
-  console.log(payload);
+
   try {
     const response = yield call(show, payload);
     yield put(actions.getActorsSuccess(response));

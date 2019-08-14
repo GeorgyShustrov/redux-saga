@@ -5,6 +5,7 @@ import { actions } from "../../../store/duck";
 import { showSelector } from "../../../store/selectors";
 import { NavLink, Route } from "react-router-dom";
 import Show from "../show/Show";
+import cx from "classnames";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -47,7 +48,8 @@ class Search extends React.Component {
     this.props.getActors(el);
   };
   render() {
-    const { showList } = this.props;
+    const { list, loading } = this.props.showList;
+
     return (
       <form className={styles.searchForm} onSubmit={this.handelSubmit}>
         <div className={styles.searchMenu}>
@@ -56,6 +58,7 @@ class Search extends React.Component {
             type="text"
             values={this.values}
             ref={this.textInput}
+            placeholder="Введите название произведения"
             onChange={this.changeInput}
           />
           <button
@@ -66,9 +69,29 @@ class Search extends React.Component {
             Найти
           </button>
         </div>
-        {showList.length > 0 ? (
+        {loading ? (
+          <div className={styles.cssloadBell}>
+            <div className={styles.cssloadCircle}>
+              <div className={styles.cssloadInner} />
+            </div>
+            <div className={styles.cssloadCircle}>
+              <div className={styles.cssloadInner} />
+            </div>
+            <div className={styles.cssloadCircle}>
+              <div className={styles.cssloadInner} />
+            </div>
+            <div className={styles.cssloadCircle}>
+              <div className={styles.cssloadInner} />
+            </div>
+            <div className={styles.cssloadCircle}>
+              <div className={styles.cssloadInner} />
+            </div>
+          </div>
+        ) : list.length == 0 ? (
+          <h4 className={styles.searchEmpty}>Список пуст</h4>
+        ) : (
           <ul className={styles.searchList}>
-            {showList.map(el => (
+            {list.map(el => (
               <li key={el.id} className={styles.listItem}>
                 <NavLink
                   className={styles.link}
@@ -76,13 +99,15 @@ class Search extends React.Component {
                   onClick={() => this.saveInfo(el.id)}
                 >
                   <p className={styles.searchName}> {el.name}</p>
-                  {el.image && el.image.original && (
-                    <img
-                      className={styles.title}
-                      src={el.image.original}
-                      alt={el.id}
-                    />
-                  )}
+
+                  <img
+                    className={styles.title}
+                    src={
+                      (el.image && (el.image.original || el.image.medium)) ||
+                      "https://img2.akspic.com/image/60348-aqua-line-graphics-movie-footage-1366x768.jpg"
+                    }
+                    alt={el.id}
+                  />
                 </NavLink>
                 <Route path={`/show/:${el.id}`} component={Show} />
                 <div
@@ -92,8 +117,6 @@ class Search extends React.Component {
               </li>
             ))}
           </ul>
-        ) : (
-          <h4 className={styles.searchEmpty}>Список пуст</h4>
         )}
       </form>
     );
