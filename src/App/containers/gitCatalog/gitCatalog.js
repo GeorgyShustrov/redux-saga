@@ -1,15 +1,14 @@
 import React from "react";
 import { Route, withRouter, Switch } from "react-router-dom";
-import styles from "./dashboard.module.css";
-import Show from "./show/Show";
-import Search from "./search/Search";
+
+import Login from "./Login/Login";
 
 class tvCatalog extends React.Component {
   render() {
     return (
-      <div className={styles.dashboard}>
+      <div>
         <Switch>
-          <Route path="/serch" component={Search} />
+          <Route path="/login" component={Login} />
         </Switch>
       </div>
     );

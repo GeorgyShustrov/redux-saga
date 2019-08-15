@@ -1,29 +1,36 @@
 import { takeLatest, put, call } from "redux-saga/effects";
 import * as constants from "./constants";
 import { actions } from "./duck";
-import { search, show } from "../api";
+import { getFollowersInfo, getUserInfo } from "../api";
 
-function* searchShowWorker(action) {
+function* loginWorker(action) {
   const { payload } = action;
   try {
-    const response = yield call(search, payload);
-    yield put(actions.searchShowSuccess(response));
-  } catch (e) {
-    yield put(actions.searchShowFailure(e.message));
-  }
+    const response = yield call(getUserInfo, payload);
+    if (!response.message) {
+      yield put(actions.loginSuccess({ response, Key: payload }));
+    } else {
+      yield put(actions.loginFailure(response));
+    }
+  } catch (e) {}
 }
-function* actorWorker(action) {
-  const { payload } = action;
+function* usersWorker(action) {
+  const { Key, value } = action.payload;
 
   try {
-    const response = yield call(show, payload);
-    yield put(actions.getActorsSuccess(response));
-  } catch (e) {
-    yield put(actions.getActorsFailure(e.message));
-  }
+    let response = yield call(getUserInfo, Key, value);
+    if (!response.message) {
+      yield put(actions.getUserSuccess(response));
+      response = yield call(getFollowersInfo, Key, value);
+      yield put(actions.getFollowersSuccess(response));
+    } else {
+      yield put(actions.getUserFailure(response));
+      yield put(actions.getFollowersFailure(response));
+    }
+  } catch (e) {}
 }
 
 export default function* showSaga() {
-  yield takeLatest(constants.SEARCH_SHOW, searchShowWorker);
-  yield takeLatest(constants.GET_ACTORS, actorWorker);
+  yield takeLatest(constants.LOGIN, loginWorker);
+  yield takeLatest(constants.GET_USER, usersWorker);
 }

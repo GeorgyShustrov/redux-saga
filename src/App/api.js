@@ -1,13 +1,9 @@
-export const search = query =>
-  fetch(`http://api.tvmaze.com/search/shows?q=${query}`, {
-    method: "GET",
-    mode: "cors"
-  })
-    .then(response => response.json())
-    .then(shows => shows.map(show => show.show));
-
-export const show = showId =>
-  fetch(`http://api.tvmaze.com/shows/${showId}?embed=cast`, {
-    method: "GET",
-    mode: "cors"
-  }).then(response => response.json());
+export const getUserInfo = (apiKey, user) => {
+  return fetch(
+    `https://api.github.com/users/${user}?access_token=${apiKey}`
+  ).then(response => response.json());
+};
+export const getFollowersInfo = (apiKey, user) =>
+  fetch(
+    `https://api.github.com/users/${user}/followers?pages=1&per_page=100?access_token=${apiKey}`
+  ).then(response => response.json());

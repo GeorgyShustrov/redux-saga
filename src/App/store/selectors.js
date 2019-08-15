@@ -1,2 +1,3 @@
-export const showSelector = state => state.showReducer.showList;
-export const actorsSelector = state => state.showReducer.actors;
+export const loginSelector = state => state.showReducer.login;
+export const userSelector = state => state.showReducer.user;
+export const followersSelector = state => state.showReducer.followers;

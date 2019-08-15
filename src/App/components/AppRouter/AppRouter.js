@@ -1,14 +1,13 @@
 import React from "react";
 import { Route, withRouter, Switch, Redirect } from "react-router-dom";
-import tvCatalog from "../../containers/tvCatalog/";
-import Show from "../../containers/tvCatalog/show/Show";
+import gitCatalog from "../../containers/gitCatalog/";
 
 class AppRouter extends React.Component {
   render() {
     return (
       <div>
         <Switch>
-          <Route path="/search" exact={true} component={tvCatalog} />
+          <Route path="/search" exact={true} component={gitCatalog} />
         </Switch>
       </div>
     );
